@@ -7,11 +7,12 @@
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: 'Arial', sans-serif;
       background: url('fundo.jpeg') no-repeat center center fixed;
       background-size: cover;
       color: #fff;
       text-align: center;
+      line-height: 1.6;
     }
 
     header {
@@ -23,16 +24,31 @@
 
     .logo-section {
       margin-top: -50px;
+      perspective: 1000px;
+    }
+
+    .logo-container {
+      display: inline-block;
+      transform-style: preserve-3d;
+    }
+
+    @keyframes girar-horizontal {
+      0% { transform: rotateY(0deg); }
+      100% { transform: rotateY(360deg); }
     }
 
     .logo-section img {
       width: 150px;
+      animation: girar-horizontal 6s linear infinite;
+      backface-visibility: visible;
+      transform-origin: center;
     }
 
     .logo-section h1 {
       margin-top: 10px;
       font-size: 24px;
       letter-spacing: 2px;
+      text-shadow: 0 0 5px rgba(255, 0, 0, 0.7);
     }
 
     .blur-box, .story-blur {
@@ -40,49 +56,117 @@
       -webkit-backdrop-filter: blur(8px);
       background-color: rgba(0, 0, 0, 0.5);
       border-radius: 12px;
-      padding: 20px;
+      padding: 25px;
       margin: 20px auto;
       box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
-    }
-
-    .blur-box {
-      max-width: 700px;
-    }
-
-    .story-blur {
       max-width: 900px;
-      font-size: 16px;
-      line-height: 1.6;
+    }
+
+    .slogan {
+      font-size: 28px;
+      color: #fff;
+      text-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
+      margin: 30px auto;
+      font-weight: bold;
+      font-style: italic;
+    }
+
+    .destaque-sombra {
+      color: #ff0000;
+      font-weight: bold;
+      text-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+    }
+
+    .frase-destaque {
+      font-size: 22px;
+      margin: 20px 0;
+      font-style: italic;
+    }
+
+    .valores-list {
+      list-style-type: none;
+      padding-left: 0;
       text-align: left;
     }
 
-    .story-blur strong {
+    .valores-list li {
+      margin-bottom: 15px;
+      position: relative;
+      padding-left: 30px;
+      font-size: 16px;
+    }
+
+    .valores-list li:before {
+      content: "✦";
       color: red;
+      position: absolute;
+      left: 0;
+    }
+
+    .pilares-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin: 30px auto;
+    }
+
+    .pilar {
+      background-color: rgba(0, 0, 0, 0.6);
+      border-left: 3px solid red;
+      padding: 15px;
+      border-radius: 0 8px 8px 0;
+      text-align: left;
+      max-width: 400px;
+    }
+
+    .pilar h3 {
+      color: red;
+      margin-top: 0;
+      font-size: 20px;
     }
 
     .vertical-image {
       margin-top: 40px;
     }
 
-    .vertical-image img {
-      width: 600px;
+    .vertical-image img, .gif img {
+      max-width: 100%;
       height: auto;
+      border-radius: 8px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
     }
 
-    .cta {
-      margin: 20px auto;
-      font-size: 24px;
-      font-weight: bold;
+    .chamada-vermelha {
       color: red;
+      font-size: 26px;
+      font-weight: bold;
+      margin: 40px auto;
+      text-shadow: 0 0 8px rgba(255, 0, 0, 0.6);
+      font-style: italic;
     }
 
     .gif {
-      margin-top: 20px;
+      margin: 30px auto;
     }
 
-    .gif img {
-      width: 400px;
-      height: auto;
+    @media (max-width: 768px) {
+      header {
+        height: 200px;
+      }
+      .slogan {
+        font-size: 22px;
+      }
+      .blur-box, .story-blur {
+        padding: 15px;
+        margin: 15px;
+      }
+      .chamada-vermelha {
+        font-size: 20px;
+      }
+      .pilares-container {
+        flex-direction: column;
+      }
     }
   </style>
 </head>
@@ -90,43 +174,60 @@
   <header></header>
 
   <section class="logo-section">
-    <img src="Logo-pequena.png" alt="Logo Shadow Guardians">
+    <div class="logo-container">
+      <img src="Logo-pequena.png" alt="Logo Shadow Guardians">
+    </div>
     <h1>SHADOW GUARDIANS</h1>
   </section>
 
   <section class="blur-box">
-    <p>Você acaba de entrar no universo da Shadow Guardians!</p>
-    <p>Nós somos uma organização brasileira feita por aqueles querem ir além e experienciar tudo que o Star Citizen tem a oferecer.</p>
+    <p class="slogan">"<span class="destaque-sombra">NA SOMBRA, NINGUÉM FICA PARA TRÁS</span> — MESMO NO OLHO DO FURACÃO."</p>
+    <p>Bem-vindo à <span class="destaque-sombra">Shadow Guardians</span>, onde cada voo é um pacto de lealdade e cada piloto é parte de uma legião indestrutível.</p>
   </section>
 
   <section class="story-blur">
-    <p>Você vai encontrar de tudo aqui e todos são bem-vindos na nossa organização. Para jogadores novos, venha experienciar o verdadeiro Star Citizen e jogar junto dos melhores! Para quem já é um veterano, venha elevar a sua gameplay e encontrar pessoas com a mesma mentalidade!</p>
+    <p class="frase-destaque">Não somos um grupo — somos a <span class="destaque-sombra">sombra que protege seus irmãos de guerra</span>.</p>
 
-    <p>Na Shadow, se existe algo para disputar, nós vamos disputar e vamos entrar para vencer!</p>
+    <p>Aqui, <span class="destaque-sombra">recrutas</span> são guiados por veteranos, e <span class="destaque-sombra">lobos solitários</span> encontram sua matilha. Quando nossas naves cruzam o céu, o universo segura a respiração. <span class="destaque-sombra">Nunca recuamos. Nunca abandonamos.</span></p>
 
-    <p>Junte-se a nós. Torne-se uma Sombra. Seja um Guardião.</p>
+    <div class="pilares-container">
+      <div class="pilar">
+        <h3>>> MISSÃO</h3>
+        <p>Ser protagonistas no endgame de Star Citizen, desenvolvendo nossos membros através de infraestrutura completa (Academia, Serviços e Eventos) que acolhe desde novatos até veteranos.</p>
+      </div>
+      
+      <div class="pilar">
+        <h3>>> VISÃO</h3>
+        <p>Ser a organização mais desejada do Brasil, referência em serviços, players ativos, alianças e eventos épicos.</p>
+      </div>
+      
+      <div class="pilar">
+        <h3>>> VALORES</h3>
+        <p>Comunidade unida por <span class="destaque-sombra">companheirismo</span>, <span class="destaque-sombra">caráter</span> e <span class="destaque-sombra">organização</span>. Liberdade para ser protagonista, com empatia e espírito de equipe como fundamentos.</p>
+      </div>
+    </div>
 
-    <p><strong>&gt;&gt; MISSÃO:</strong><br>
-      Ser protagonistas no endgame de Star Citizen sendo referência no desenvolvimento dos nossos membros através de toda uma infraestrutura (Academia, Serviços e Eventos) que acolhe players experientes e também novos jogadores que curtem se divertir e jogar em grupo.
-    </p>
+    <ul class="valores-list">
+      <li><strong>Lealdade incondicional:</strong> Se você cai, nós voltamos para te trazer de volta.</li>
+      <li><strong>Excelência coletiva:</strong> Treinamos juntos para dominar qualquer cenário.</li>
+      <li><strong>Estratégia implacável:</strong> Somos a tempestade que se aproxima em silêncio.</li>
+      <li><strong>Unidade acima de tudo:</strong> De mineradores a combatentes, todos são essenciais.</li>
+    </ul>
 
-    <p><strong>&gt;&gt; VISÃO:</strong><br>
-      Ser a organização mais desejada do Brasil, sendo referência em nossos serviços prestados, players ativos, alianças criadas e eventos jogados.
-    </p>
-
-    <p><strong>&gt;&gt; VALORES:</strong><br>
-      Mais do que uma organização, somos uma comunidade movida por companheirismo, caráter e organização. Proporcionamos a liberdade necessária para os nossos Shadows sejam protagonistas dentro da organização ao fazer a sua história, mantendo sempre a empatia e o espírito de equipe como norteadores de nossas ações.
+    <p style="text-align: center; font-size: 22px; margin-top: 30px;">
+      <span class="destaque-sombra">SOMOS A SOMBRA QUE SEU INIMIGO NÃO VÊ CHEGAR.<br>
+      SOMOS OS GUARDIÕES QUE NUNCA FALHAM.</span>
     </p>
   </section>
 
   <section class="vertical-image">
-    <img src="imagem-vertical.jpg" alt="Imagem Vertical">
+    <img src="imagem-vertical.jpg" alt="Naves da Shadow Guardians em formação">
   </section>
 
-  <div class="cta blur-box">VENHA FAZER PARTE!</div>
+  <div class="chamada-vermelha">VENHA FAZER PARTE!</div>
 
   <div class="gif">
-    <img src="chamada.gif" alt="Gif de chamada">
+    <img src="chamada.gif" alt="Frota Shadow Guardians em ação">
   </div>
 </body>
 </html>
